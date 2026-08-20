@@ -1,0 +1,20 @@
+version: 1
+assignment: many-templates
+
+goals:
+  - id: which-strategy
+    level: evaluate
+    goal: >
+      Judge whether a crashing child should take its siblings down with it, and
+      defend the choice against children that share no state.
+
+  - id: giving-up
+    level: analyse
+    goal: >
+      Trace what your supervisor does when a child fails every time it is
+      started, and work out what stops it.
+
+  - id: what-is-lost
+    level: analyse
+    goal: >
+      Work out what a restart discards, and which of it the child needed.
