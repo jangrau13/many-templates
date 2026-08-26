@@ -3,8 +3,9 @@
 
 new(Children) -> #{children => Children, running => Children, restarts => []}.
 
-%% Put the one that exited back, and leave its siblings alone.
-handle_exit(State = #{running := Running}, Child, _Reason) ->
-    State#{running := lists:usort([Child | Running])}.
+%% If one child died, the others may be holding state it corrupted, so restart
+%% all of them together. That way the group always comes back consistent.
+handle_exit(State = #{children := Children}, _Child, _Reason) ->
+    State#{running := Children}.
 
 alive(#{running := R}) -> R.
